@@ -1,23 +1,97 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Form</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
 <body>
-<form 
-  method="POST" 
-  action="https://script.google.com/macros/s/AKfycbwNVLJydxKqTTNEeAKkJ03yRLw05aiwLaagjIP4KMVMLWjrQwz0D36iL1AJJbzgQsbb/exec"
->
-  <input name="Email" type="email" placeholder="Email" required>
-  <input name="Name" type="text" placeholder="Name" required>
-  <input name="Age" type="text" placeholder="Age" required>
-  <br>
-  <input type="checkbox" name="vehicle1" value="Bike"> Bike <br>
-  <input type="checkbox" name="vehicle2" value="Car"> Car <br>
-  
-  <input type="radio" name="Gender" value="Male"> Male <br>
-  <input type="radio" name="Gender" value="Female"> Female <br>
+  <div class="container mt-5">
+    <form 
+      method="POST" 
+      action="https://script.google.com/macros/s/AKfycbwNVLJydxKqTTNEeAKkJ03yRLw05aiwLaagjIP4KMVMLWjrQwz0D36iL1AJJbzgQsbb/exec"
+      class="needs-validation" novalidate
+    >
+      <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input id="email" name="Email" type="email" class="form-control" placeholder="Email" required>
+        <div class="invalid-feedback">
+          Please enter a valid email.
+        </div>
+      </div>
 
-  <button type="submit">Send</button>
-</form>
+      <div class="mb-3">
+        <label for="name" class="form-label">Name:</label>
+        <input id="name" name="Name" type="text" class="form-control" placeholder="Name" required>
+        <div class="invalid-feedback">
+          Please enter your name.
+        </div>
+      </div>
 
+      <div class="mb-3">
+        <label for="age" class="form-label">Age:</label>
+        <input id="age" name="Age" type="number" class="form-control" placeholder="Age" required>
+        <div class="invalid-feedback">
+          Please enter your age.
+        </div>
+      </div>
+
+      <fieldset class="mb-3">
+        <legend>Vehicles:</legend>
+        <div class="form-check">
+          <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" class="form-check-input">
+          <label for="vehicle1" class="form-check-label">Bike</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="vehicle2" name="vehicle2" value="Car" class="form-check-input">
+          <label for="vehicle2" class="form-check-label">Car</label>
+        </div>
+      </fieldset>
+
+      <fieldset class="mb-3">
+        <legend>Gender:</legend>
+        <div class="form-check">
+          <input type="radio" id="male" name="Gender" value="Male" class="form-check-input">
+          <label for="male" class="form-check-label">Male</label>
+        </div>
+        <div class="form-check">
+          <input type="radio" id="female" name="Gender" value="Female" class="form-check-input">
+          <label for="female" class="form-check-label">Female</label>
+        </div>
+      </fieldset>
+
+      <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+  </div>
+
+  <!-- Bootstrap 5 JS and dependencies (Optional for enhanced components) -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+
+  <!-- Optional: Add custom validation script -->
+  <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+      'use strict'
+
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.querySelectorAll('.needs-validation')
+
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+          }, false)
+        })
+    })()
+  </script>
 </body>
-
 </html>
