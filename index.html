@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<!---Coding By CodingLab | www.codinglabweb.com--->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Registration Form in HTML CSS</title>
+    <!---Custom CSS File--->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section class="container">
+      <header>KKCAS MAESTROS 2K24 Registration Form</header>
+      <form method="POST" 
+      action="https://script.google.com/macros/s/AKfycbwNVLJydxKqTTNEeAKkJ03yRLw05aiwLaagjIP4KMVMLWjrQwz0D36iL1AJJbzgQsbb/exec" 
+      class="form">
+        <div class="input-box">
+          <label>Full Name</label>
+          <input name="Name" type="text" placeholder="Enter full name" required />
+        </div>
+
+        <div class="input-box">
+          <label>Class</label>
+          <input name="Class" type="text" placeholder="Enter class" required />
+        </div>
+
+        <div class="input-box">
+          <label>School Name</label>
+          <input name="school" type="text" placeholder="Enter school name" required />
+        </div>
+
+        <div class="input-box">
+          <label>Email Address</label>
+          <input name="Email" type="text" placeholder="Enter email address" required />
+        </div>
+
+        <div class="column">
+          <div class="input-box">
+            <label>Phone Number</label>
+            <input name="Phone" type="number" placeholder="Enter phone number" required />
+          </div>
+          <div class="input-box">
+            <label>Whatsapp Number</label>
+            <input name="Whatsapp" type="number" placeholder="Enter phone number" required />
+          </div>
+        </div>
+        <div class="gender-box">
+          <h3>Gender</h3>
+          <div class="gender-option">
+            <div class="gender">
+              <input value="Male" type="radio" id="check-male" name="gender" checked />
+              <label for="check-male">male</label>
+            </div>
+            <div class="gender">
+              <input value="Female" type="radio" id="check-female" name="gender" />
+              <label for="check-female">Female</label>
+            </div>
+            <div class="gender">
+              <input value="Others" type="radio" id="check-other" name="gender" />
+              <label for="check-other">prefer not to say</label>
+            </div>
+          </div>
+        </div>
+        <div class="input-box address">
+          <label>Event List</label>
+          <div class="select-box">
+            <select id="event1" name="Event 1">
+              <option hidden>Event 1</option>
+            </select>
+          </div>
+          <div class="select-box">
+            <select id="event2" name="Event 2">
+              <option hidden>Event 2</option>
+            </select>
+
+            <script>
+              let event = ["-","Drawing","Speech","Essay","Poetry","Dance (Solo)","Dance (Group)","Singing (Solo)","Singing (Group)","Cook Without Fire","Connection"];
+              let html="";
+              for(let i=0; i<event.length;i++){
+                html += "<option>"+event[i]+"</option>"
+              }
+              document.getElementById("event1").innerHTML=html;
+              document.getElementById("event2").innerHTML=html;
+              const dropdown1 = document.getElementById("event1");
+              const dropdown2 = document.getElementById("event2");
+              dropdown1.addEventListener("change",myfun);
+              dropdown2.addEventListener("change",myfun);
+              let count = 0;
+
+              function myfun(){
+                if(dropdown1.value === dropdown2.value){
+                  alert("You Can not select same event in event 1 and event 2")
+                  document.getElementById("event1").innerHTML=html;
+                  document.getElementById("event2").innerHTML=html;
+                }
+
+
+
+
+
+                if(dropdown1.value==="Dance (Group)" || dropdown1.value==="Cook Without Fire" || dropdown1.value==="Singing (Group)" || dropdown1.value==="Connection")
+                {
+                count =2;
+                let html1 = `
+                      <div class="input-box address">
+                      <label>Participant List for ${dropdown1.value} </label> <br>`
+                if(dropdown1.value==="Dance (Group)"){
+                  count = 5;
+                }
+                let html2 = "";
+                for(let i=0; i<count;i++){
+                  html2 += `<label>Participant ${i+1}</label>
+                  <input name="Participant ${i+1} ${dropdown1.value}" type="text" placeholder="Enter name ${i+1}" required />`
+                }
+
+                      html3=`</div>`
+                document.getElementById("paticipants1").innerHTML=html1+html2+html3;
+              }
+              else{
+                document.getElementById("paticipants1").innerHTML="";
+              }
+              
+
+
+
+
+
+
+              if(dropdown2.value==="Dance (Group)" || dropdown2.value==="Cook Without Fire" || dropdown2.value==="Singing (Group)" || dropdown2.value==="Connection")
+                {
+                count =2;
+                let html1 = `
+                      <div class="input-box address">
+                      <label>Participant List for ${dropdown2.value} </label> <br>`
+                if(dropdown2.value==="Dance (Group)"){
+                  count = 5;
+                }
+                let html2 = "";
+                for(let i=0; i<count;i++){
+                  html2 += `<label>Participant ${i+1}</label>
+                  <input name="Participant ${i+1} ${dropdown2.value}" type="text" placeholder="Enter name ${i+1}" required />`
+                }
+
+                      html3=`</div>`
+                document.getElementById("paticipants2").innerHTML=html1+html2+html3;
+              }
+              else{
+                document.getElementById("paticipants2").innerHTML="";
+              }
+              }
+
+
+
+
+            </script>
+        
+          </div>
+        </div>
+        <div id="paticipants1">
+
+        </div>
+        <div id="paticipants2">
+
+        </div>
+<script>
+  
+    </script>
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+  </body>
+</html>
