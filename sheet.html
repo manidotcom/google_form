@@ -12,12 +12,8 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-6 col-md-8 col-sm-10">
-        <div class="bg-white p-4 rounded shadow-sm">
-          <form 
-            method="POST" 
-            action="https://script.google.com/macros/s/AKfycbwNVLJydxKqTTNEeAKkJ03yRLw05aiwLaagjIP4KMVMLWjrQwz0D36iL1AJJbzgQsbb/exec"
-            class="needs-validation" novalidate
-          >
+        <div class="bg-white p-4 rounded shadow-sm my-4"> <!-- Added margin here -->
+          <form id="myForm" method="POST" class="needs-validation" novalidate>
             <div class="mb-3">
               <label for="email" class="form-label">Email:</label>
               <input id="email" name="Email" type="email" class="form-control" placeholder="Email" required>
@@ -73,29 +69,44 @@
     </div>
   </div>
 
-  <!-- Bootstrap 5 JS and dependencies (Optional for enhanced components) -->
+  <!-- Bootstrap 5 JS and dependencies -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
 
-  <!-- Optional: Add custom validation script -->
+  <!-- Custom script for decryption -->
   <script>
-    (function () {
-      'use strict'
+    // Encrypted form action URL (replace this with your encrypted URL)
+    const encryptedUrl = 'ENCRYPTED_URL_HERE';
+    const secretKey = 'your-secret-key';
 
-      var forms = document.querySelectorAll('.needs-validation')
+    // Decrypt the URL
+    const decryptedBytes = CryptoJS.AES.decrypt(encryptedUrl, secretKey);
+    const formActionUrl = decryptedBytes.toString(CryptoJS.enc.Utf8);
 
-      Array.prototype.slice.call(forms)
-        .forEach(function (form) {
-          form.addEventListener('submit', function (event) {
-            if (!form.checkValidity()) {
-              event.preventDefault()
-              event.stopPropagation()
-            }
+    document.addEventListener('DOMContentLoaded', () => {
+      // Set the form action URL
+      const form = document.getElementById('myForm');
+      form.action = formActionUrl;
 
-            form.classList.add('was-validated')
-          }, false)
-        })
-    })()
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function () {
+        'use strict'
+
+        var forms = document.querySelectorAll('.needs-validation')
+
+        Array.prototype.slice.call(forms)
+          .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+              if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+              }
+
+              form.classList.add('was-validated')
+            }, false)
+          })
+      })()
+    });
   </script>
 </body>
 </html>
